@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#div1 input {
+				background: #CCC;
+			}
+			
+			#div1 .active {
+				background: yellow;
+			}
+			
+			#div1 div {
+				width: 200px;
+				height: 200px;
+				background: #CCC;
+				display: none;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="div1">
+			<input class="active" type="button" value="教育" />
+			<input type="button" value="财经" />
+			<input type="button" value="aaa" />
+			<div style="display:block;">111111111111</div>
+			<div>22222222222</div>
+			<div>33333333333</div>
+		</div>
+	</body>
+	<script>
+		window.onload = function() {
+			var oTab = new TabSwitch("div1");
+		}
+
+		function TabSwitch(id) {
+			var oDiv = document.getElementById(id);
+			this.aBtn = oDiv.getElementsByTagName('input');
+			this.aDiv = oDiv.getElementsByTagName('div');
+			var thi = this;
+			for(var i = 0; i < this.aBtn.length; i++) {
+				this.aBtn[i].index = i;
+				this.aBtn[i].onclick = function() {
+					thi.tab(this);
+				};
+
+			}
+		};
+		TabSwitch.prototype.tab = function(oBtn) {
+			for(var i = 0; i < this.aBtn.length; i++) {
+				this.aBtn[i].className = '';
+				this.aDiv[i].style.display = 'none';
+			}
+			oBtn.className = 'active';
+			this.aDiv[oBtn.index].style.display = 'block';
+		}
+	</script>
+
+</html>
